@@ -9,7 +9,7 @@ module "tomcat_application" {
 	app-name = "spring-petclinic"
 	env-name = "uat"
 	app_version_id = "31"
-	mysql-jdbc-host = "a9f24c4135da311e8a89a0e9cfd102bd-1177462056.us-east-1.elb.amazonaws.com"
+	mysql-jdbc-host = "100.71.84.21"
 }
 output "application_endpoint" {
 	value = "${module.tomcat_application.endpoint}"

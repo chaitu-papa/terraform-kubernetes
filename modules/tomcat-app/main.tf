@@ -40,7 +40,7 @@ resource "kubernetes_replication_controller" "tomcat" {
 		}
 	env {
                 name = "jdbc_url"
-                value = "jdbc:mysql://${var.mysql-jdbc-host}:3306/petclinic?useUnicode=true"
+                value = "jdbc:mysql://${var.mysql-jdbc-host}:3306/petclinic?autoReconnect=true&characterEncoding=utf8&useUnicode=true&interactiveClient=true"
 		}
 	env {
                 name = "jdbc_username"
