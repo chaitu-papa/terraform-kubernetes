@@ -6,10 +6,13 @@
 variable "app-name" {
   description = "Application Name"
 }
+variable "docker-org" {
+  description = "Docker registry Org Name"
+}
 variable "env-name" {
   description = "Environment Name"
 }
-variable "app_version_id" {
+variable "app-version-id" {
   description = "Unique version application ID"
 }
 variable "mysql-jdbc-host" {

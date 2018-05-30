@@ -28,7 +28,7 @@ resource "kubernetes_replication_controller" "tomcat" {
     }
     template {
       container {
-        image = "ccsdevops/${var.app-name}:${var.app_version_id}"
+        image = "${var.docker-org}/${var.app-name}:${var.app-version-id}"
         name  = "${var.app-name}"
 	env {
                 name = "db_script"

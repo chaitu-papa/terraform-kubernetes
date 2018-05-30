@@ -15,3 +15,4 @@ module "tomcat_application" {
 output "application_endpoint" {
 	value = "${module.tomcat_application.endpoint}"
 }
+
