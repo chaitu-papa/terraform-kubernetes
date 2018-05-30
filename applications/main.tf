@@ -11,6 +11,7 @@ module "tomcat_application" {
 	env-name = "${var.env-name}"
 	app-version-id = "${var.app-version-id}"
 	mysql-jdbc-host = "${var.mysql-jdbc-host}"
+	replicas = "${var.replicas}"
 }
 output "application_endpoint" {
 	value = "${module.tomcat_application.endpoint}"

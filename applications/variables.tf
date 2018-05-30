@@ -27,4 +27,7 @@ variable "docker-org" {
 variable "mysql-jdbc-host" {
   description = "My SQL JDBC HOST NAME"
 }
+variable "replicas" {
+  description = "no:of application replicas"
+}
 

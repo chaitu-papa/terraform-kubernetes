@@ -22,7 +22,7 @@ resource "kubernetes_replication_controller" "tomcat" {
   }
 
   spec {
-    replicas = 2
+    replicas = "${var.replicas}"
     selector {
       App = "${var.app-name}"
     }

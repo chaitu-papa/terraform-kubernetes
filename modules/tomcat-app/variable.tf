@@ -18,3 +18,6 @@ variable "app-version-id" {
 variable "mysql-jdbc-host" {
   description = "My SQL JDBC HOST NAME"
 }
+variable "replicas" {
+  description = "No:of Replicas" 
+}
