@@ -31,6 +31,26 @@ resource "kubernetes_replication_controller" "tomcat" {
         image = "${var.docker-org}/${var.app-name}:${var.app-version-id}"
         name  = "${var.app-name}"
 	env {
+                name = "app_name"
+                value = "${var.app-name}"
+		}
+	env {
+                name = "app_version"
+                value = "${var.app-version-id}"
+		}
+	env {
+                name = "env_name"
+                value = "${var.env-name}"
+		}
+	env {
+                name = "elk_hostname"
+                value = "34.196.120.121"
+		}
+	env {
+                name = "elastic_port"
+                value = "9200"
+		}
+	env {
                 name = "db_script"
                 value = "mysql"
 		}
