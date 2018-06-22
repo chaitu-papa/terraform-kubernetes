@@ -133,7 +133,6 @@ resource "kubernetes_replication_controller" "tomcat" {
       }
     }
   }
-}
 resource "kubernetes_service" "tomcat" {
   metadata {
     name = "${var.app-name}"
