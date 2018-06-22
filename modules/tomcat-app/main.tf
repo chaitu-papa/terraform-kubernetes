@@ -118,7 +118,18 @@ resource "kubernetes_replication_controller" "tomcat" {
             cpu    = "250m"
             memory = "50Mi"
           }
+	 volume_mount {
+          name = "persistent-storage"
+          mount_path = "/usr/share/tomcat/logs"
         }
+        }
+	volume {
+        name = "persistent-storage"
+        persistent_volume_claim {
+          claim_name = "${kubernetes_persistent_volume_claim.volume_claim.metadata.0.name}"
+        }
+      }
+
       }
     }
   }
