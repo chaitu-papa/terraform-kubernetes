@@ -15,7 +15,7 @@ resource "kubernetes_persistent_volume" "volumes" {
         }
     }
 }
-resource "kubernetes_persistent_volume_claim" "example" {
+resource "kubernetes_persistent_volume_claim" "volume_claim" {
   metadata {
     name = "${var.app-name}-${var.env-name}-claim"
   }
@@ -26,7 +26,7 @@ resource "kubernetes_persistent_volume_claim" "example" {
         storage = "1Gi"
       }
     }
-    volume_name = "${kubernetes_persistent_volume.example.metadata.0.name}"
+    volume_name = "${kubernetes_persistent_volume.volumes.metadata.0.name}"
   }
 }
 
