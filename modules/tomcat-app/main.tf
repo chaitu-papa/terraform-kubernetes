@@ -15,6 +15,21 @@ resource "kubernetes_persistent_volume" "volumes" {
         }
     }
 }
+resource "kubernetes_persistent_volume_claim" "example" {
+  metadata {
+    name = "${var.app-name}-${var.env-name}-claim"
+  }
+  spec {
+    access_modes = ["ReadWriteMany"]
+    resources {
+      requests {
+        storage = "1Gi"
+      }
+    }
+    volume_name = "${kubernetes_persistent_volume.example.metadata.0.name}"
+  }
+}
+
 resource "kubernetes_namespace" "mysql" {
   metadata {
     annotations {
