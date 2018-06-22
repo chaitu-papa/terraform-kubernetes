@@ -15,7 +15,6 @@ resource "kubernetes_namespace" "tomcat" {
 resource "kubernetes_persistent_volume" "volumes" {
     metadata {
         name = "${var.app-name}-${var.env-name}"
-    	namespace = "${var.app-name}-${var.env-name}"
     }
     spec {
         capacity {
