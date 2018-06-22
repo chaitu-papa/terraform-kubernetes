@@ -1,3 +1,20 @@
+resource "kubernetes_persistent_volume" "volumes" {
+    metadata {
+        name = "${var.app-name}-${var.env-name}"
+    }
+    spec {
+        capacity {
+            storage = "2Gi"
+        }
+        access_modes = ["ReadWriteMany"]
+        persistent_volume_source {
+	   aws_elastic_block_store {
+                volume_id  = "vol-01d4d6ccc9c3f31da"
+		fs_type = "ext4"
+            }
+        }
+    }
+}
 resource "kubernetes_namespace" "mysql" {
   metadata {
     annotations {
