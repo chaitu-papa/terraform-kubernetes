@@ -1,6 +1,21 @@
+
+resource "kubernetes_namespace" "tomcat" {
+  metadata {
+    annotations {
+      name = "${var.app-name}-annotations"
+    }
+
+    labels {
+      mylabel = "${var.app-name}"
+    }
+
+    name = "${var.app-name}-${var.env-name}"
+  }
+}
 resource "kubernetes_persistent_volume" "volumes" {
     metadata {
         name = "${var.app-name}-${var.env-name}"
+    	namespace = "${var.app-name}-${var.env-name}"
     }
     spec {
         capacity {
@@ -18,6 +33,7 @@ resource "kubernetes_persistent_volume" "volumes" {
 resource "kubernetes_persistent_volume_claim" "volume_claim" {
   metadata {
     name = "${var.app-name}-${var.env-name}-claim"
+    namespace = "${var.app-name}-${var.env-name}"
   }
   spec {
     access_modes = ["ReadWriteMany"]
@@ -30,19 +46,6 @@ resource "kubernetes_persistent_volume_claim" "volume_claim" {
   }
 }
 
-resource "kubernetes_namespace" "mysql" {
-  metadata {
-    annotations {
-      name = "${var.app-name}-annotations"
-    }
-
-    labels {
-      mylabel = "${var.app-name}"
-    }
-
-    name = "${var.app-name}-${var.env-name}"
-  }
-}
 
 resource "kubernetes_replication_controller" "tomcat" {
   metadata {
