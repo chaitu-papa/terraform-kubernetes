@@ -38,7 +38,7 @@ resource "kubernetes_persistent_volume_claim" "volume_claim" {
     access_modes = ["ReadWriteMany"]
     resources {
       requests {
-        storage = "1Gi"
+        storage = "2Gi"
       }
     }
     volume_name = "${kubernetes_persistent_volume.volumes.metadata.0.name}"
