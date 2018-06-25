@@ -24,7 +24,7 @@ resource "kubernetes_persistent_volume" "volumes" {
         persistent_volume_source {
 	   aws_elastic_block_store {
                 volume_id  = "vol-01d4d6ccc9c3f31da"
-		fs_type = "ext4"
+		fs_type = "xfs"
             }
         }
     }
