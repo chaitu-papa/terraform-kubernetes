@@ -20,7 +20,7 @@ resource "kubernetes_persistent_volume" "volumes" {
         capacity {
             storage = "5Gi"
         }
-        access_modes = ["ReadWriteOnce"]
+        access_modes = ["ReadWriteMany"]
         persistent_volume_source {
 	   aws_elastic_block_store {
                 volume_id  = "vol-01d4d6ccc9c3f31da"
@@ -36,7 +36,7 @@ resource "kubernetes_persistent_volume_claim" "volume_claim" {
     namespace = "${var.app-name}-${var.env-name}"
   }
   spec {
-    access_modes = ["ReadWriteOnce"]
+    access_modes = ["ReadWriteMany"]
     resources {
       requests {
         storage = "2Gi"
