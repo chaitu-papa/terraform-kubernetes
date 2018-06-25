@@ -18,15 +18,16 @@ resource "kubernetes_persistent_volume" "volumes" {
     }
     spec {
         capacity {
-            storage = "2Gi"
+            storage = "5Gi"
         }
         access_modes = ["ReadWriteOnce"]
         persistent_volume_source {
 	   aws_elastic_block_store {
                 volume_id  = "vol-01d4d6ccc9c3f31da"
-		fs_type = "xfs"
+		fs_type = "ext4"
             }
         }
+    storage_class_name = "gp2"	
     }
 }
 resource "kubernetes_persistent_volume_claim" "volume_claim" {
@@ -41,6 +42,7 @@ resource "kubernetes_persistent_volume_claim" "volume_claim" {
         storage = "2Gi"
       }
     }
+    storage_class_name = "gp2"	
     volume_name = "${kubernetes_persistent_volume.volumes.metadata.0.name}"
   }
 }
