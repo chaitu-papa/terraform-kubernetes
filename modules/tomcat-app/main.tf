@@ -64,6 +64,20 @@ resource "kubernetes_replication_controller" "tomcat" {
     }
     template {
       container {
+        image = "docker.elastic.co/beats/filebeat:6.0.1"
+        name  = "filebeat"
+        resources {
+          limits {
+            cpu    = "0.5"
+            memory = "512Mi"
+          }
+          requests {
+            cpu    = "250m"
+            memory = "50Mi"
+          }
+        }
+        }
+      container {
         image = "${var.docker-org}/${var.app-name}:${var.app-version-id}"
         name  = "${var.app-name}"
 	env {
