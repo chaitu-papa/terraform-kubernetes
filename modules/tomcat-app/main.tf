@@ -124,10 +124,6 @@ resource "kubernetes_replication_controller" "tomcat" {
         port {
           container_port = 8080
         }
-	 volume_mount {
-             name = "persistent-storage"
-             mount_path = "/usr/share/tomcat/logs"
-	}
         resources {
           limits {
             cpu    = "0.5"
@@ -139,13 +135,6 @@ resource "kubernetes_replication_controller" "tomcat" {
           }
         }
         }
-	volume {
-        name = "persistent-storage"
-        persistent_volume_claim {
-          claim_name = "${kubernetes_persistent_volume_claim.volume_claim.metadata.0.name}"
-        }
-      }
-
       }
     }
   }
