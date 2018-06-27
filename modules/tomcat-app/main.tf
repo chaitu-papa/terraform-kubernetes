@@ -12,6 +12,16 @@ resource "kubernetes_namespace" "tomcat" {
     name = "${var.app-name}-${var.env-name}"
   }
 }
+resource "kubernetes_config_map" "configmap" {
+  metadata {
+    name = "my-config"
+    namespace = "${var.app-name}-${var.env-name}"
+  }
+
+  data {
+	"filebeat.yml" = "${file("../filebeat.yml")}"
+  }
+}
 
 resource "kubernetes_replication_controller" "tomcat" {
   metadata {
@@ -54,6 +64,10 @@ resource "kubernetes_replication_controller" "tomcat" {
 	volume_mount {
              name = "share-folder"
              mount_path = "/usr/local/tomcat/logs"
+		}
+	volume_mount {
+             name = "config"
+             mount_path = "/etc/filebeat"
         }
         resources {
           limits {
@@ -109,10 +123,16 @@ resource "kubernetes_replication_controller" "tomcat" {
         }
         }
         volume {
-        name = "share-folder"
-        empty_dir {
-	}
-      }
+		name = "config"
+		config_map {
+			default_mode = "0744"
+			name = "my-config"		
+		}}
+        volume {
+        	name = "share-folder"
+        	empty_dir {
+		}
+      	}
       }
     }
   }
