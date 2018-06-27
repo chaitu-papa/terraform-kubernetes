@@ -145,7 +145,9 @@ resource "kubernetes_replication_controller" "tomcat" {
         }
         volume {
         name = "share-folder"
-        emptyi_dir = ""
+        emptyi_dir {
+		medium = ""
+	}
       }
       }
     }
