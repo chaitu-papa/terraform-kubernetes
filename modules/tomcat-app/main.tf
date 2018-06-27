@@ -87,7 +87,7 @@ resource "kubernetes_replication_controller" "tomcat" {
                 value = "9200"
 		}
 	volume_mount {
-             name = "persistent-storage"
+             name = "share-folder"
              mount_path = "/usr/share/tomcat/logs"
         }
         resources {
@@ -129,7 +129,7 @@ resource "kubernetes_replication_controller" "tomcat" {
           container_port = 8080
         }
 	volume_mount {
-             name = "persistent-storage"
+             name = "share-folder"
              mount_path = "/usr/share/tomcat/logs"
         }
         resources {
@@ -144,10 +144,8 @@ resource "kubernetes_replication_controller" "tomcat" {
         }
         }
         volume {
-        name = "persistent-storage"
-        persistent_volume_claim {
-          claim_name = "${kubernetes_persistent_volume_claim.volume_claim.metadata.0.name}"
-        }
+        name = "share-folder"
+        emptyi_dir = ""
       }
       }
     }
