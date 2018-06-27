@@ -12,41 +12,6 @@ resource "kubernetes_namespace" "tomcat" {
     name = "${var.app-name}-${var.env-name}"
   }
 }
-resource "kubernetes_persistent_volume" "volumes" {
-    metadata {
-        name = "${var.app-name}-${var.env-name}"
-    }
-    spec {
-        capacity {
-            storage = "5Gi"
-        }
-        access_modes = ["ReadWriteOnce"]
-        persistent_volume_source {
-	   aws_elastic_block_store {
-                volume_id  = "vol-01d4d6ccc9c3f31da"
-		fs_type = "ext4"
-            }
-        }
-    storage_class_name = "gp2"	
-    }
-}
-resource "kubernetes_persistent_volume_claim" "volume_claim" {
-  metadata {
-    name = "${var.app-name}-${var.env-name}-claim"
-    namespace = "${var.app-name}-${var.env-name}"
-  }
-  spec {
-    access_modes = ["ReadWriteOnce"]
-    resources {
-      requests {
-        storage = "2Gi"
-      }
-    }
-    storage_class_name = "gp2"	
-    volume_name = "${kubernetes_persistent_volume.volumes.metadata.0.name}"
-  }
-}
-
 
 resource "kubernetes_replication_controller" "tomcat" {
   metadata {
@@ -88,7 +53,7 @@ resource "kubernetes_replication_controller" "tomcat" {
 		}
 	volume_mount {
              name = "share-folder"
-             mount_path = "/usr/share/tomcat/logs"
+             mount_path = "/usr/local/tomcat/logs"
         }
         resources {
           limits {
@@ -130,7 +95,7 @@ resource "kubernetes_replication_controller" "tomcat" {
         }
 	volume_mount {
              name = "share-folder"
-             mount_path = "/usr/share/tomcat/logs"
+             mount_path = "/usr/local/tomcat/logs"
         }
         resources {
           limits {
