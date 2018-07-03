@@ -41,6 +41,7 @@ resource "kubernetes_replication_controller" "tomcat" {
       container {
         image = "docker.elastic.co/beats/filebeat:6.0.1"
         name  = "filebeat"
+	args =  ["-c","/etc/filebeat/filebeat.yml","-e"]
 	env {
                 name = "app_name"
                 value = "${var.app-name}"
