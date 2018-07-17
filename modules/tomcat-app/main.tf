@@ -22,6 +22,20 @@ resource "kubernetes_config_map" "configmap" {
 	"filebeat.yml" = "${file("../filebeat.yml")}"
   }
 }
+resource "kubernetes_horizontal_pod_autoscaler" "autoscaler" {
+  metadata {
+    name = "${var.app-name}"
+    namespace = "${var.app-name}-${var.env-name}"
+  }
+  spec {
+    max_replicas = 5
+    min_replicas = "${var.replicas}"
+    scale_target_ref {
+      kind = "ReplicationController"
+      name = "${var.app-name}"
+    }
+  }
+}
 
 resource "kubernetes_replication_controller" "tomcat" {
   metadata {
