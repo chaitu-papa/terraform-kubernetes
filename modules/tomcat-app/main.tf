@@ -14,7 +14,7 @@ resource "kubernetes_namespace" "tomcat" {
 }
 resource "kubernetes_config_map" "configmap" {
   metadata {
-    name = "my-config"
+    name = "${var.app-name}"
     namespace = "${var.app-name}-${var.env-name}"
   }
 
