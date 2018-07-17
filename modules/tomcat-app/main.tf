@@ -30,6 +30,7 @@ resource "kubernetes_horizontal_pod_autoscaler" "autoscaler" {
   spec {
     max_replicas = 5
     min_replicas = "${var.replicas}"
+    target_cpu_utilization_percentage = 75
     scale_target_ref {
       kind = "ReplicationController"
       name = "${var.app-name}"
