@@ -127,7 +127,7 @@ resource "kubernetes_replication_controller" "tomcat" {
 		name = "config"
 		config_map {
 			default_mode = "0744"
-			name = "my-config"		
+			name = "${var.app-name}"		
 		}}
         volume {
         	name = "share-folder"
