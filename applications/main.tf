@@ -12,6 +12,8 @@ module "tomcat_application" {
 	app-version-id = "${var.app-version-id}"
 	mysql-jdbc-host = "${var.mysql-jdbc-host}"
 	replicas = "${var.replicas}"
+	appd-agent-account = "${var.appd-agent-account}"
+	appd-agent-account-access-key = "${var.appd-agent-account-access-key}"
 }
 output "application_endpoint" {
 	value = "${module.tomcat_application.endpoint}"

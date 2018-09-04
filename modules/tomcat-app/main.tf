@@ -119,7 +119,39 @@ resource "kubernetes_replication_controller" "tomcat" {
                 name = "jdbc_password"
                 value = "mypassword"
         	}
+	env {
+                name = "APPDYNAMICS_CONTROLLER_HOST_NAME"
+                value = "18.213.126.86"
+        	}
+	env {
+                name = "APPDYNAMICS_CONTROLLER_PORT"
+                value = "8090"
+        	}
+	env {
+                name = "APPDYNAMICS_AGENT_APPLICATION_NAME"
+                value = "${var.app-name}"
+        	}
+	env {
+                name = "APPDYNAMICS_AGENT_TIER_NAME"
+                value = "spring petclinic tier service"
+        	}
+	env {
+                name = "APPDYNAMICS_AGENT_ACCOUNT_NAME"
+                value = "${var.appd-agent-account}"
+        	}
+	env {
+                name = "APPDYNAMICS_AGENT_ACCOUNT_ACCESS_KEY"
+                value = "${var.appd-agent-account-access-key}"
+        	}
 
+	env {
+                name = "APPDYNAMICS_SIM_ENABLED"
+                value = "true"
+        	}
+	env {
+                name = "APPDYNAMICS_SIM_ENABLED"
+                value = "true"
+        	}
         port {
           container_port = 8080
         }

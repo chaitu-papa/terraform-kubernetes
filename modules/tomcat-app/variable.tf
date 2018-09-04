@@ -21,3 +21,9 @@ variable "mysql-jdbc-host" {
 variable "replicas" {
   description = "No:of Replicas" 
 }
+variable "appd-agent-account" {
+  description = "appd agent account"
+}
+variable "appd-agent-account-access-key" {
+  description = "appd agent account access key"
+}
