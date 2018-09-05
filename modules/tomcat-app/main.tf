@@ -149,7 +149,7 @@ resource "kubernetes_replication_controller" "tomcat" {
                 value = "true"
         	}
 	env {
-                name = "APPDYNAMICS_SIM_ENABLED"
+                name = "APPDYNAMICS_DOCKER_ENABLED"
                 value = "true"
         	}
         port {
