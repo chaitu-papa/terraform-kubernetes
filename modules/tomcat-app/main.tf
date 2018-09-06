@@ -158,7 +158,7 @@ resource "kubernetes_replication_controller" "tomcat" {
         	}
 	env {
                 name = "APPDYNAMICS_AGENT_UNIQUE_HOST_ID"
-                value = "$HOSTNAME"
+                value = "HOSTNAME"
         	}
         port {
           container_port = 8080
