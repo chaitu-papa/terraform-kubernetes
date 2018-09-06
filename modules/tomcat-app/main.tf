@@ -150,7 +150,7 @@ resource "kubernetes_replication_controller" "tomcat" {
         	}
 	env {
                 name = "APPDYNAMICS_DOCKER_ENABLED"
-                value = "true"
+                value = "false"
         	}
 	env {
                 name = "APPDYNAMICS_AGENT_NODE_NAME"
