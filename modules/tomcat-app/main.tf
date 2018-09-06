@@ -121,11 +121,11 @@ resource "kubernetes_replication_controller" "tomcat" {
         	}
 	env {
                 name = "APPDYNAMICS_CONTROLLER_HOST_NAME"
-                value = "18.213.126.86"
+                value = "cognizanttechnologysolutions-nfr.saas.appdynamics.com"
         	}
 	env {
                 name = "APPDYNAMICS_CONTROLLER_PORT"
-                value = "8090"
+                value = "443"
         	}
 	env {
                 name = "APPDYNAMICS_AGENT_APPLICATION_NAME"
@@ -158,7 +158,7 @@ resource "kubernetes_replication_controller" "tomcat" {
         	}
 	env {
                 name = "APPDYNAMICS_AGENT_UNIQUE_HOST_ID"
-                value = "HOSTNAME"
+                value = "${var.env-name}-${var.app-version-id}"
         	}
         port {
           container_port = 8080
