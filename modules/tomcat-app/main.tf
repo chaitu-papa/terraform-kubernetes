@@ -152,6 +152,19 @@ resource "kubernetes_replication_controller" "tomcat" {
                 name = "APPDYNAMICS_DOCKER_ENABLED"
                 value = "false"
         	}
+	env {
+                name = "APPDYNAMICS_AGENT_NODE_NAME"
+                value = "${var.env-name}-${var.app-version-id}"
+        	}
+	env {
+                name = "APPDYNAMICS_AGENT_NODE_NAME"
+                value = "${var.env-name}-${var.app-version-id}"
+        	}
+	env {
+                name = "APPDYNAMICS_AGENT_UNIQUE_HOST_ID"
+                value = "${var.env-name}-${var.app-version-id}"
+        	}
+
         port {
           container_port = 8080
         }
