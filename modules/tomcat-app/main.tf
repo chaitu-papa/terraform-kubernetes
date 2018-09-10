@@ -129,7 +129,7 @@ resource "kubernetes_replication_controller" "tomcat" {
         	}
 	env {
                 name = "APPDYNAMICS_AGENT_APPLICATION_NAME"
-                value = "${var.app-name}"
+                value = "${var.app-name}-testing"
         	}
 	env {
                 name = "APPDYNAMICS_AGENT_TIER_NAME"
