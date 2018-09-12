@@ -120,16 +120,8 @@ resource "kubernetes_replication_controller" "tomcat" {
                 value = "mypassword"
         	}
 	env {
-                name = "APPDYNAMICS_CONTROLLER_HOST_NAME"
-                value = "cognizanttechnologysolutions-nfr.saas.appdynamics.com"
-        	}
-	env {
-                name = "APPDYNAMICS_CONTROLLER_PORT"
-                value = "443"
-        	}
-	env {
                 name = "APPDYNAMICS_AGENT_APPLICATION_NAME"
-                value = "${var.app-name}-testing"
+                value = "${var.app-name}"
         	}
 	env {
                 name = "APPDYNAMICS_AGENT_TIER_NAME"
@@ -154,8 +146,9 @@ resource "kubernetes_replication_controller" "tomcat" {
         	}
 	env {
                 name = "APPDYNAMICS_AGENT_NODE_NAME"
-                value = "${var.env-name}-${var.app-version-id}"
+                value = "${var.env-name}"
         	}
+
 
         port {
           container_port = 8080
@@ -163,16 +156,6 @@ resource "kubernetes_replication_controller" "tomcat" {
 	volume_mount {
              name = "share-folder"
              mount_path = "/usr/local/tomcat/logs"
-        }
-        resources {
-          limits {
-            cpu    = "0.5"
-            memory = "512Mi"
-          }
-          requests {
-            cpu    = "250m"
-            memory = "50Mi"
-          }
         }
         }
         volume {
