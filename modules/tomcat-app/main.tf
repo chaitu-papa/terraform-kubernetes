@@ -137,14 +137,6 @@ resource "kubernetes_replication_controller" "tomcat" {
         	}
 
 	env {
-                name = "APPDYNAMICS_SIM_ENABLED"
-                value = "true"
-        	}
-	env {
-                name = "APPDYNAMICS_DOCKER_ENABLED"
-                value = "false"
-        	}
-	env {
                 name = "APPDYNAMICS_AGENT_NODE_NAME"
                 value = "${var.env-name}"
         	}
@@ -153,6 +145,7 @@ resource "kubernetes_replication_controller" "tomcat" {
         port {
           container_port = 8080
         }
+
 	volume_mount {
              name = "share-folder"
              mount_path = "/usr/local/tomcat/logs"
@@ -168,7 +161,7 @@ resource "kubernetes_replication_controller" "tomcat" {
         	name = "share-folder"
         	empty_dir {
 		}
-      	}
+     	 	}
       }
     }
   }
