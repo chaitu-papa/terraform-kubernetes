@@ -125,7 +125,7 @@ resource "kubernetes_replication_controller" "tomcat" {
         	}
 	env {
                 name = "APPDYNAMICS_AGENT_TIER_NAME"
-                value = "spring petclinic tier service"
+                value = "spring petclinic tier service ${var.env-name}"
         	}
 	env {
                 name = "APPDYNAMICS_AGENT_ACCOUNT_NAME"
